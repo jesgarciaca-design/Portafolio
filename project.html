@@ -3,7 +3,73 @@
 <meta charset="UTF-8">
 <title>Juan Garcia.c | Proyectos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#0d0f1a;color:#e6e8f2}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:#05070f;position:relative;z-index:1000}
+.logo{font-size:20px;font-weight:700}
+.logo span,.btn-dark,.btn-send,.fill,.arrow-btn{background:#ff6b4a}
+.navbar nav{display:flex;gap:30px}
+.navbar nav a{text-decoration:none;color:#e6e8f2;font-weight:500}
+.navbar nav a:hover,.hero-content span,.about-stats h3,.service h3,.blog-card a{color:#ff6b4a}
+.hero{display:flex;justify-content:space-between;align-items:center;padding:80px 8%;background:linear-gradient(90deg,#0d0f1a,#14182b);flex-wrap:wrap;gap:40px}
+.hero-content,.contact-form{flex:1}
+.hero-content{min-width:280px}
+.hero-content h1{font-size:48px;line-height:1.2}
+.hero-buttons{margin-top:20px}
+.btn-dark,.btn-outline{padding:12px 25px;border-radius:6px;cursor:pointer}
+.btn-dark{color:white;border:none}
+.btn-outline{border:1px solid #2e344f;background:transparent;margin-left:10px;color:white}
+.hero-image{position:relative;display:flex;justify-content:center;align-items:center;flex:1;min-width:280px;height:400px}
+.circle{width:350px;height:350px;background:#ff6b4a;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.hero-image img{width:320px;height:320px;object-fit:cover;border-radius:50%;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.about{background:#14182b;padding:100px 8%;text-align:center}
+.about p,.skills-sub,.portfolio-sub,.testimonial-text,.blog-sub{color:#a5a9c5}
+.about-stats{display:flex;justify-content:center;gap:80px;margin-top:40px}
+.about-stats h3{font-size:40px}
+#services{text-align:center}
+#services h2{margin-bottom:10px}
+#services>p,.service p{color:#bcbcbc}
+#services>p{margin-bottom:40px}
+.services-container{display:grid;grid-template-columns:repeat(5,1fr);gap:40px;max-width:1000px;margin:50px auto 0}
+.service{padding:10px}
+.service h3{margin-bottom:10px}
+.service p{font-size:15px;line-height:1.5}
+.portfolio{background:#05070f;padding:100px 8%;text-align:center}
+.portfolio-sub,.blog-sub{max-width:600px;margin:15px auto 60px;font-size:14px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.portfolio-card{background:#14182b;border-radius:12px;overflow:hidden}
+.portfolio-card img,.blog-card img{width:100%;object-fit:cover;display:block}
+.portfolio-card img{height:200px}
+.portfolio-info{display:flex;justify-content:space-between;align-items:center;padding:20px}
+.portfolio-info span{font-size:13px;color:#9aa0b5}
+.arrow-btn{width:35px;height:35px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:14px}
+.skills{background:#14182b;padding:80px 8%;text-align:center}
+.skills-sub{margin:20px auto 50px}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+.skill p{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:500}
+.bar{background:#2e344f;height:6px;border-radius:4px;overflow:hidden}
+.fill{height:100%}
+.testimonial{background:#0d0f1a;padding:100px 8%;text-align:center;position:relative}
+.testimonial-circle{width:80px;height:80px;background:#ff6b4a;border-radius:50%;position:absolute;top:-40px;left:50%;transform:translateX(-50%)}
+.testimonial-text{max-width:600px;margin:20px auto}
+.testimonial-profile{display:flex;justify-content:center;align-items:center;gap:15px;margin-top:20px}
+.testimonial-profile img{border-radius:50%}
+.blog{padding:100px 8%;background:#14182b;text-align:center}
+.blog-sub{max-width:700px;margin:20px auto 50px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.blog-card{background:#1b2038;border-radius:12px;overflow:hidden;text-align:left;box-shadow:0 8px 20px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.blog-card img{height:180px}
+.blog-card span{font-size:13px;color:#9aa0b5;padding:15px 20px 0}
+.blog-card h3{padding:10px 20px;font-size:18px}
+.blog-card p{padding:0 20px 20px;font-size:14px;color:#b9bdd6;flex-grow:1}
+.blog-card a{display:block;padding:0 20px 20px;text-decoration:none;font-weight:600}
+.contact{display:flex;background:linear-gradient(90deg,#0d0f1a,#14182b);padding:80px 8%;gap:40px;flex-wrap:wrap}
+.contact-form{display:flex;flex-direction:column;gap:15px}
+.contact-form input,.contact-form textarea{padding:15px;border:1px solid #2e344f;background:transparent;color:white;border-radius:6px}
+.btn-send{color:white;padding:15px;border:none;cursor:pointer;border-radius:10px}
+footer{background:#05070f;color:#9aa0b5;padding:40px;text-align:center}
+</style>
 </head>
 <body>
 
@@ -110,7 +176,7 @@
   <div class="contact-text">
     <h2>Empecemos a construir sueños</h2>
     <p>Tel. +3102086602</p>
-    <p>Mail. jesgarciaca@unbosque.edu.co</p>
+    <p>Mail. <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e444b5d494f5c4d474f4d4f6e5b404c415d5f5b4b004b4a5b004d41">[email&#160;protected]</a></p>
   </div>
   <form class="contact-form">
     <input type="text" placeholder="Nombre">
@@ -125,10 +191,4 @@
   <div class="footer-logo">Juan Garcia.c</div>
   <div class="footer-links">
     <a href="about.html">Sobre mi</a> |
-    <a href="index.html#services">Servicios</a> |
-    <a href="index.html#portfolio">Portafolio</a>
-  </div>
-</footer>
-
-</body>
-</html>
+    <a

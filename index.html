@@ -3,128 +3,431 @@
 <meta charset="UTF-8">
 <title>Juan Garcia.c | Portafolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+
+body{background:#0d0f1a;color:#e6e8f2}
+
+
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:#05070f;position:relative;z-index:1000}
+.logo{font-size:20px;font-weight:700}
+.logo span,.btn-dark,.btn-send,.fill,.arrow-btn{background:#ff6b4a}
+.navbar nav{display:flex;gap:30px}
+.navbar nav a{text-decoration:none;color:#e6e8f2;font-weight:500}
+.navbar nav a:hover,.hero-content span,.about-stats h3,.service h3,.blog-card a{color:#ff6b4a}
+
+
+.hero{display:flex;justify-content:space-between;align-items:center;padding:80px 8%;background:linear-gradient(90deg,#0d0f1a,#14182b);flex-wrap:wrap;gap:40px}
+.hero-content,.contact-form{flex:1}
+.hero-content{min-width:280px}
+.hero-content h1{font-size:48px;line-height:1.2}
+.hero-buttons{margin-top:20px}
+.btn-dark,.btn-outline{padding:12px 25px;border-radius:6px;cursor:pointer}
+.btn-dark{color:white;border:none}
+.btn-outline{border:1px solid #2e344f;background:transparent;margin-left:10px;color:white}
+.hero-image{position:relative;display:flex;justify-content:center;align-items:center;flex:1;min-width:280px;height:400px}
+.circle{width:350px;height:350px;background:#ff6b4a;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.hero-image img{width:320px;height:320px;object-fit:cover;border-radius:50%;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+
+
+.about{background:#14182b;padding:100px 8%;text-align:center}
+.about p,.skills-sub,.portfolio-sub,.testimonial-text,.blog-sub{color:#a5a9c5}
+.about-stats{display:flex;justify-content:center;gap:80px;margin-top:40px}
+.about-stats h3{font-size:40px}
+
+
+#services{text-align:center}
+#services h2{margin-bottom:10px}
+#services>p,.service p{color:#bcbcbc}
+#services>p{margin-bottom:40px}
+.services-container{display:grid;grid-template-columns:repeat(5,1fr);gap:40px;max-width:1000px;margin:50px auto 0}
+.service{padding:10px}
+.service h3{margin-bottom:10px}
+.service p{font-size:15px;line-height:1.5}
+
+
+.portfolio{background:#05070f;padding:100px 8%;text-align:center}
+.portfolio-sub,.blog-sub{max-width:600px;margin:15px auto 60px;font-size:14px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.portfolio-card{background:#14182b;border-radius:12px;overflow:hidden}
+.portfolio-card img,.blog-card img{width:100%;object-fit:cover;display:block}
+.portfolio-card img{height:200px}
+.portfolio-info{display:flex;justify-content:space-between;align-items:center;padding:20px}
+.portfolio-info span{font-size:13px;color:#9aa0b5}
+.arrow-btn{width:35px;height:35px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:14px}
+
+
+.skills{background:#14182b;padding:80px 8%;text-align:center}
+.skills-sub{margin:20px auto 50px}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+.skill p{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:500}
+.bar{background:#2e344f;height:6px;border-radius:4px;overflow:hidden}
+.fill{height:100%}
+
+
+.testimonial{background:#0d0f1a;padding:100px 8%;text-align:center;position:relative}
+.testimonial-circle{width:80px;height:80px;background:#ff6b4a;border-radius:50%;position:absolute;top:-40px;left:50%;transform:translateX(-50%)}
+.testimonial-text{max-width:600px;margin:20px auto}
+.testimonial-profile{display:flex;justify-content:center;align-items:center;gap:15px;margin-top:20px}
+.testimonial-profile img{border-radius:50%}
+
+
+.blog{padding:100px 8%;background:#14182b;text-align:center}
+.blog-sub{max-width:700px;margin:20px auto 50px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.blog-card{background:#1b2038;border-radius:12px;overflow:hidden;text-align:left;box-shadow:0 8px 20px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.blog-card img{height:180px}
+.blog-card span{font-size:13px;color:#9aa0b5;padding:15px 20px 0}
+.blog-card h3{padding:10px 20px;font-size:18px}
+.blog-card p{padding:0 20px 20px;font-size:14px;color:#b9bdd6;flex-grow:1}
+.blog-card a{display:block;padding:0 20px 20px;text-decoration:none;font-weight:600}
+
+
+.contact{display:flex;background:linear-gradient(90deg,#0d0f1a,#14182b);padding:80px 8%;gap:40px;flex-wrap:wrap}
+.contact-form{display:flex;flex-direction:column;gap:15px}
+.contact-form input,.contact-form textarea{padding:15px;border:1px solid #2e344f;background:transparent;color:white;border-radius:6px}
+.btn-send{color:white;padding:15px;border:none;cursor:pointer;border-radius:10px}
+
+
+footer{background:#05070f;color:#9aa0b5;padding:40px;text-align:center}
+</style>
 </head>
+
 <body>
 
-<!-- ========== NAVBAR ========== -->
 <header class="navbar">
-  <div class="logo">Juan Garcia.c</div>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="about.html">Sobre mí</a>
-    <a href="project.html">Proyectos</a>
-  </nav>
-  <button class="btn-dark">Hablemos</button>
+<div class="logo">Juan Garcia.c</div>
+
+<nav>
+<a href="#about">Sobre mí</a>
+<a href="#services">Servicios</a>
+<a href="#portfolio">Portafolio</a>
+<a href="#blog">Blog</a>
+</nav>
+
+<button class="btn-dark">Hablemos</button>
 </header>
 
-<!-- ========== HERO ========== -->
 <section class="hero">
-  <div class="hero-content">
-    <h4>Creador Digital</h4>
-    <h1>Creador <br><span>digital</span> creatividad y precisión</h1>
-    <p>
-      Hola, soy Juan Esteban y me enfoco en el asesoramiento a empresas
-      en el desarrollo de páginas web, diseño digital y experiencia de usuario.
-    </p>
-    <div class="hero-buttons">
-      <button class="btn-dark">COMUNICATE</button>
-      <button class="btn-outline">PROYECTOS</button>
-    </div>
-  </div>
-  <div class="hero-image">
-    <div class="hero-circle"></div>
-    <h1 class="hero-bg-text">UX</h1>
-    <img src="https://i.postimg.cc/W49m4RCZ/Whats-App-Image-2026-02-27-at-11-29-34-PM-removebg-preview.png">
-  </div>
+
+<div class="hero-content">
+
+<h4>Creador Digital</h4>
+
+<h1>Creador <br><span>digital</span> creatividad y precisión</h1>
+
+<p>
+Hola, soy Juan Esteban y me enfoco en el asesoramiento a empresas
+en el desarrollo de páginas web, diseño digital y experiencia de usuario.
+</p>
+
+<div class="hero-buttons">
+<button class="btn-dark">COMUNICATE</button>
+<button class="btn-outline">PROYECTOS</button>
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<div class="hero-circle"></div>
+<h1 class="hero-bg-text">UX</h1>
+<img src="https://i.postimg.cc/W49m4RCZ/Whats-App-Image-2026-02-27-at-11-29-34-PM-removebg-preview.png">
+
+</div>
+
 </section>
 
-<!-- ========== SERVICIOS ========== -->
+<section id="about" class="about">
+
+<div class="container">
+
+<h2>Mi filosofía</h2>
+
+<p>"Soy un fiel creyente del trabajo innovador y con la mayor cantidad de personalidad posible."</p>
+
+<div class="about-stats">
+
+<div>
+<h3>999+</h3>
+<p>Proyectos Realizados</p>
+</div>
+
+<div>
+<h3>15+</h3>
+<p>Años de Experiencia</p>
+</div>
+
+<div>
+<h3>883+</h3>
+<p>Clientes Satisfechos</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <section id="services">
-  <h2>Servicios</h2>
-  <p>Soluciones digitales enfocadas en diseño, creatividad y experiencia de usuario.</p>
-  <div class="services-container">
-    <div class="service">
-      <h3>Diseño Web</h3>
-      <p>Creación de páginas modernas y funcionales.</p>
-    </div>
-    <div class="service">
-      <h3>Branding</h3>
-      <p>Construcción de identidad visual profesional.</p>
-    </div>
-    <div class="service">
-      <h3>UX/UI</h3>
-      <p>Diseño centrado en el usuario.</p>
-    </div>
-    <div class="service">
-      <h3>Prototipado</h3>
-      <p>Creación de prototipos en Figma.</p>
-    </div>
-  </div>
+
+<h2>Servicios</h2>
+<p>Soluciones digitales enfocadas en diseño, creatividad y experiencia de usuario.</p>
+
+<div class="services-container">
+
+<div class="service">
+<h3>Diseño Web</h3>
+<p>Creación de páginas modernas y funcionales.</p>
+</div>
+
+<div class="service">
+<h3>Branding</h3>
+<p>Construcción de identidad visual profesional.</p>
+</div>
+
+<div class="service">
+<h3>UX/UI</h3>
+<p>Diseño centrado en el usuario.</p>
+</div>
+
+<div class="service">
+<h3>Prototipado</h3>
+<p>Creación de prototipos en Figma.</p>
+</div>
+
+</div>
+
 </section>
 
-<!-- ========== PORTAFOLIO ========== -->
 <section id="portfolio" class="portfolio">
-  <div class="container">
-    <h2>Mi Portafolio</h2>
-    <p class="portfolio-sub">
-      Proyectos digitales enfocados en diseño web, experiencia de usuario y creatividad.
-    </p>
-    <div class="portfolio-grid">
-      <div class="portfolio-card">
-        <img src="https://i.postimg.cc/1XtKK7Qn/images.png">
-        <div class="portfolio-info">
-          <div><h4>UrbanStyle Boutique</h4><span>Diseño de e-commerce de moda</span></div>
-          <div class="arrow-btn">➜</div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="https://i.postimg.cc/d0P4K92F/D-Q-NP-650231-CBT86494176556-062025-O.webp">
-        <div class="portfolio-info">
-          <div><h4>BrightKids Learning</h4><span>Plataforma educativa digital</span></div>
-          <div class="arrow-btn">➜</div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="https://i.postimg.cc/y6vQScHF/images.jpg">
-        <div class="portfolio-info">
-          <div><h4>FitLife Studio</h4><span>Página web para gimnasio</span></div>
-          <div class="arrow-btn">➜</div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="https://i.postimg.cc/43V2K0fh/flying-airplanes-sky-route-travel-260nw-2559151055.webp">
-        <div class="portfolio-info">
-          <div><h4>SkyRoute Travel</h4><span>Aplicación móvil de turismo</span></div>
-          <div class="arrow-btn">➜</div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="https://i.postimg.cc/4Nx08w5V/images.jpg">
-        <div class="portfolio-info">
-          <div><h4>GreenLeaf Market</h4><span>Diseño de tienda online</span></div>
-          <div class="arrow-btn">➜</div>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="https://i.postimg.cc/BvKkT6gb/Social-Media-Management.png">
-        <div class="portfolio-info">
-          <div><h4>NextWave Digital</h4><span>Plataforma web corporativa</span></div>
-          <div class="arrow-btn">➜</div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<div class="container">
+
+<h2>Mi Portafolio</h2>
+
+<p class="portfolio-sub">
+Proyectos digitales enfocados en diseño web, experiencia de usuario y creatividad.
+</p>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-card">
+<img src="https://i.postimg.cc/1XtKK7Qn/images.png">
+<div class="portfolio-info">
+<div>
+<h4>UrbanStyle Boutique</h4>
+<span>Diseño de e-commerce de moda</span>
+</div>
+<div class="arrow-btn">➜</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<img src="https://i.postimg.cc/d0P4K92F/D-Q-NP-650231-CBT86494176556-062025-O.webp">
+<div class="portfolio-info">
+<div>
+<h4>BrightKids Learning</h4>
+<span>Plataforma educativa digital</span>
+</div>
+<div class="arrow-btn">➜</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<img src="https://i.postimg.cc/y6vQScHF/images.jpg">
+<div class="portfolio-info">
+<div>
+<h4>FitLife Studioe</h4>
+<span>Página web para gimnasio</span>
+</div>
+<div class="arrow-btn">➜</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<img src="https://i.postimg.cc/43V2K0fh/flying-airplanes-sky-route-travel-260nw-2559151055.webp">
+<div class="portfolio-info">
+<div>
+<h4>SkyRoute Travel</h4>
+<span>Aplicación móvil de turismo</span>
+</div>
+<div class="arrow-btn">➜</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<img src="https://i.postimg.cc/4Nx08w5V/images.jpg">
+<div class="portfolio-info">
+<div>
+<h4>GreenLeaf Market</h4>
+<span>Diseño de tienda online</span>
+</div>
+<div class="arrow-btn">➜</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<img src="https://i.postimg.cc/BvKkT6gb/Social-Media-Management.png">
+<div class="portfolio-info">
+<div>
+<h4>NextWave Digital</h4>
+<span>Plataforma web corporativa</span>
+</div>
+<div class="arrow-btn">➜</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- ========== FOOTER ========== -->
+<section class="skills">
+
+<div class="container">
+
+<h2>NIVEL DE HABILIDADES</h2>
+
+<p class="skills-sub">
+Al pasar los años masterise las habilidades que se muestran aca
+</p>
+
+<div class="skills-grid">
+
+<div class="skill">
+<p>Interaction Design <span>100%</span></p>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+</div>
+
+<div class="skill">
+<p>Figma <span>100%</span></p>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+</div>
+
+<div class="skill">
+<p>Usability Testing <span>100%</span></p>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+</div>
+
+<div class="skill">
+<p>Prototyping <span>100%</span></p>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+</div>
+
+<div class="skill">
+<p>User Research <span>100%</span></p>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+</div>
+
+<div class="skill">
+<p>Information Architecture <span>100%</span></p>
+<div class="bar"><div class="fill" style="width:100%"></div></div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="testimonial">
+
+<div class="container">
+
+<div class="testimonial-circle"></div>
+
+<h2>Testimonio</h2>
+
+<p class="testimonial-text">
+Trabajar con Juan Esteban fue una experiencia excelente. Desde el inicio demostró profesionalismo, creatividad y una gran atención al detalle.
+</p>
+
+<div class="testimonial-profile">
+
+<img src="https://i.postimg.cc/90YjGMcT/470973297-924563662986305-521430519890489680-n.jpg">
+
+<div>
+<strong>Shadai Palacios</strong>
+<p>CEO of XYZ Company</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="blog" class="blog">
+
+<div class="container">
+
+<h2>Ideas de diseño e inspiración</h2>
+
+<p class="blog-sub">
+Mantente al día con las últimas tendencias en UX/UI y mejora tus proyectos.
+</p>
+
+<div class="blog-grid">
+
+<div class="blog-card">
+<img src="https://i.postimg.cc/XYFkxyTk/images.jpg">
+<span class="blog-date">Aug 15, 2024</span>
+<h3>Tipografias clave en mis trabajos.</h3>
+<p>Descubre un poco de las tipografias mas solicitadas.</p>
+<a href="#">Read More</a>
+</div>
+
+<div class="blog-card">
+<img src="https://i.postimg.cc/x8hL305F/IMG1.png">
+<span class="blog-date">Aug 10, 2024</span>
+<h3>Psicología del color</h3>
+<p>Explore un poco de los colores que se usan para generar atención.</p>
+<a href="#">Read More</a>
+</div>
+
+<div class="blog-card">
+<img src="https://i.postimg.cc/TYbbXvC1/Microinteracciones.png">
+<span class="blog-date">Aug 5, 2024</span>
+<h3>Microinteracciones UX</h3>
+<p>Mira las interacciones más usadas en proyectos.</p>
+<a href="#">Read More</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="contact">
+
+<div class="contact-text">
+<h2>Empecemos a construir sueños</h2>
+<p>Tel. +3102086602</p>
+<p>Mail. jesgarciaca@unbosque.edu.co</p>
+</div>
+
+<form class="contact-form">
+<input type="text" placeholder="Nombre">
+<input type="email" placeholder="Mail">
+<textarea placeholder="Solicitud"></textarea>
+<button type="submit" class="btn-send">Enviar</button>
+</form>
+
+</section>
+
 <footer>
-  <div class="footer-logo">Juan Garcia.c</div>
-  <div class="footer-links">
-    <a href="about.html">Sobre mi</a> |
-    <a href="index.html#services">Servicios</a> |
-    <a href="index.html#portfolio">Portafolio</a>
-  </div>
+
+<div class="footer-logo">Juan Garcia.c</div>
+
+<div class="footer-links">
+<a href="#">Sobre mi</a> |
+<a href="#">Servicios</a> |
+<a href="#">Portafolio</a>
+</div>
+
 </footer>
 
 </body>
